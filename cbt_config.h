@@ -12,7 +12,7 @@ namespace cbt_config
     paths src = {"./src"};                                         // Your source files/folders of .c/.cpp files.
     flags cflags = {"-I./include", "-O3"};                         // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
     flags ldflags = {"-L./lib", "-lraylib", "-lwinmm", "-lgdi32"}; // Any LDFLAGS such as '-L./lib -lm'
-    std::string target = "./build/mathbox.exe";                    // Your target executable name.
+    std::string target = "mathbox.exe";                            // Your target executable name.
 
     // Features
     bool console_colors = true;      // Enable console output colors (not supported on all terminals)
