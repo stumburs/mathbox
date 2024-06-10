@@ -6,14 +6,14 @@ ToyHandler::ToyHandler()
 {
     active_toy = ToyType::NONE;
 
-    toys.emplace(ToyType::VORONOI, Voronoi());
+    toys.emplace(ToyType::VORONOI, std::make_unique<Voronoi>());
 }
 
 void ToyHandler::update_toy()
 {
     if (toys.find(active_toy) != toys.end())
     {
-        toys[active_toy].update();
+        toys[active_toy]->update();
     }
 }
 
@@ -21,6 +21,6 @@ void ToyHandler::render_toy()
 {
     if (toys.find(active_toy) != toys.end())
     {
-        toys[active_toy].render();
+        toys[active_toy]->render();
     }
 }

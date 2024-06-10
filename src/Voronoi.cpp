@@ -3,15 +3,11 @@
 
 Voronoi::Voronoi()
 {
-    std::cout << "Created within\n";
-
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 }
 
 void Voronoi::update()
 {
-    std::cout << "updating within\n";
-
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         seeds.push_back(GetMousePosition());
@@ -43,7 +39,6 @@ void Voronoi::update()
 
 void Voronoi::render()
 {
-    std::cout << "Rendering within\n";
     DrawTexturePro(
         image.texture,
         {0, 0, static_cast<float>(image.texture.width), -static_cast<float>(image.texture.height)},

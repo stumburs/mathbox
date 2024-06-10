@@ -19,5 +19,5 @@ public:
 
     ToyType active_toy;
 
-    std::map<ToyType, Toy> toys;
+    std::map<ToyType, std::unique_ptr<Toy>> toys;
 };
