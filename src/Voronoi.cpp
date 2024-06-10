@@ -3,6 +3,7 @@
 
 Voronoi::Voronoi()
 {
+    name = "Voronoi";
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 }
 
@@ -55,6 +56,11 @@ void Voronoi::render()
         {0.0f, 0.0f},
         0.0f,
         WHITE);
+}
+
+const std::string &Voronoi::get_name() const
+{
+    return name;
 }
 
 int Voronoi::sqr_dist(int x1, int y1, int x2, int y2)

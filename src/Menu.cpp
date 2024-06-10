@@ -29,9 +29,27 @@ void Menu::render()
 {
     ClearBackground({40, 44, 52, 255});
 
-    if (GuiButton({100, 100, 200, 50}, "Voronoi"))
+    // Toy selection window
+    panel_content.width = static_cast<float>(GetScreenWidth()) - GuiGetStyle(LISTVIEW, SCROLLBAR_WIDTH) - 2;
+    scroll_panel = {0.0f, 0.0f, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight())};
+
+    GuiScrollPanel(scroll_panel, nullptr, panel_content, &view_scroll, &panel_view);
+
+    // Scissored area within scrollpanel
+    BeginScissorMode(panel_view.x, panel_view.y, panel_view.width, panel_view.height);
     {
-        toy_handler.active_toy = ToyHandler::ToyType::VORONOI;
-        std::cout << "Voronoi selected!" << std::endl;
+        int dx = 0;
+        int dy = 0;
+        for (const auto &[toy_type, toy] : toy_handler.toys)
+        {
+            if (GuiButton({static_cast<float>(100 + dx), view_scroll.y + 100 + dy, 200, 50}, toy->get_name().c_str()))
+            {
+                toy_handler.active_toy = toy_type;
+                std::cout << toy->get_name() << " selected!" << std::endl;
+            }
+            dx += 220;
+            dy += 0;
+        }
     }
+    EndScissorMode();
 }

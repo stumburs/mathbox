@@ -9,6 +9,7 @@ public:
     Voronoi();
     void update() override;
     void render() override;
+    const std::string &get_name() const override;
 
 private:
     int sqr_dist(int x1, int y1, int x2, int y2);

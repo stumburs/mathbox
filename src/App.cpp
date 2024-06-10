@@ -7,6 +7,7 @@
 
 void App::run()
 {
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1280, 720, "mathbox");
     SetTargetFPS(60);
 
@@ -39,7 +40,7 @@ void App::run()
             {
                 menu.render();
             }
-            DrawFPS(20, 20);
+            // DrawFPS(20, 20);
         }
         EndDrawing();
     }
