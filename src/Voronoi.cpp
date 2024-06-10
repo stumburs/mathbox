@@ -1,7 +1,7 @@
 #include "Voronoi.hpp"
 #include <iostream>
 
-void Voronoi::init()
+Voronoi::Voronoi()
 {
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 }

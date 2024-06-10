@@ -10,7 +10,7 @@ namespace cbt_config
     // Compilation
     std::string cc = "g++";                                        // Your compiler of choice (cc, gcc, g++, clang, etc)
     paths src = {"./src"};                                         // Your source files/folders of .c/.cpp files.
-    flags cflags = {"-I./include", "-O3"};                         // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
+    flags cflags = {"-I./include"};                                // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
     flags ldflags = {"-L./lib", "-lraylib", "-lwinmm", "-lgdi32"}; // Any LDFLAGS such as '-L./lib -lm'
     std::string target = "mathbox.exe";                            // Your target executable name.
 
@@ -18,7 +18,7 @@ namespace cbt_config
     bool console_colors = true;      // Enable console output colors (not supported on all terminals)
     bool run_after_compiling = true; // Automatically run program after compiling
     bool timestamp_output = false;   // Add timestamps to cbt::Log messages
-    bool time = false;               // Logs time it took to build and execute (displays only after executing)
+    bool time = true;                // Logs time it took to build and execute (displays only after executing)
 
     // Custom commands
     std::string pre_build_command = "";  // Custom command to run before build

@@ -6,7 +6,7 @@
 class Voronoi : public Toy
 {
 public:
-    void init() override;
+    Voronoi();
     void update() override;
     void render() override;
 
