@@ -10,7 +10,7 @@ namespace cbt_config
     // Compilation
     std::string cc = "g++";                                        // Your compiler of choice (cc, gcc, g++, clang, etc)
     paths src = {"./src"};                                         // Your source files/folders of .c/.cpp files.
-    flags cflags = {"-I./include"};                                // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
+    flags cflags = {"-I./include", "-Wall", "-Wno-enum-compare"};  // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
     flags ldflags = {"-L./lib", "-lraylib", "-lwinmm", "-lgdi32"}; // Any LDFLAGS such as '-L./lib -lm'
     std::string target = "mathbox.exe";                            // Your target executable name.
 

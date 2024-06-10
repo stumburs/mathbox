@@ -20,7 +20,7 @@ void Voronoi::update()
                 for (int x = 0; x < GetScreenWidth(); x++)
                 {
                     int j = 0;
-                    for (int i = 0; i < seeds.size(); i++)
+                    for (size_t i = 0; i < seeds.size(); i++)
                     {
                         if (sqr_dist(static_cast<int>(seeds[i].x), static_cast<int>(seeds[i].y), x, y) <
                             sqr_dist(static_cast<int>(seeds[j].x), static_cast<int>(seeds[j].y), x, y))
@@ -32,8 +32,17 @@ void Voronoi::update()
                     }
                 }
             }
+            for (const auto seed : seeds)
+                DrawCircle(static_cast<int>(seed.x), static_cast<int>(seed.y), 4, BLACK);
         }
         EndTextureMode();
+    }
+
+    if (IsKeyPressed(KEY_R))
+    {
+        // UnloadRenderTexture(image);
+        image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+        seeds.clear();
     }
 }
 

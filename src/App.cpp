@@ -16,6 +16,12 @@ void App::run()
     while (!WindowShouldClose())
     {
         // Update
+        // Return to main menu
+        if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE))
+        {
+            toy_handler.active_toy = ToyHandler::ToyType::NONE;
+        }
+
         if (toy_handler.active_toy != ToyHandler::ToyType::NONE)
         {
             toy_handler.update_toy();
