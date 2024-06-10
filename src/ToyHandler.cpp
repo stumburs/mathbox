@@ -1,4 +1,5 @@
 #include "ToyHandler.hpp"
+#include "Voronoi.hpp"
 #include <iostream>
 
 ToyHandler::ToyHandler()
@@ -10,12 +11,17 @@ ToyHandler::ToyHandler()
 
 void ToyHandler::update_toy()
 {
-    toys.at(active_toy).update();
-    return;
+    if (toys.find(active_toy) != toys.end())
+    {
+        toys[active_toy].update();
+    }
 }
 
 void ToyHandler::render_toy()
 {
-    toys.at(active_toy).render();
-    return;
+    if (toys.find(active_toy) != toys.end())
+    {
+        std::cout << "Rendering!\n";
+        toys[active_toy].render();
+    }
 }

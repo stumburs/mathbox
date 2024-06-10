@@ -1,6 +1,7 @@
 #pragma once
-#include "Voronoi.hpp"
 #include <map>
+#include <memory>
+#include <Toy.hpp>
 
 class ToyHandler
 {
