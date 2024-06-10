@@ -21,7 +21,6 @@ void ToyHandler::render_toy()
 {
     if (toys.find(active_toy) != toys.end())
     {
-        std::cout << "Rendering!\n";
         toys[active_toy].render();
     }
 }
