@@ -45,6 +45,9 @@ void Voronoi::update()
         image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
         seeds.clear();
     }
+
+    if (IsKeyPressed(KEY_TAB))
+        settings_panel.toggle_open();
 }
 
 void Voronoi::render()
@@ -56,6 +59,9 @@ void Voronoi::render()
         {0.0f, 0.0f},
         0.0f,
         WHITE);
+
+    if (settings_panel.open)
+        settings_panel.render();
 }
 
 const std::string &Voronoi::get_name() const

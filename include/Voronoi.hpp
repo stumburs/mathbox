@@ -2,6 +2,7 @@
 #include "Toy.hpp"
 #include <vector>
 #include <raylib.h>
+#include "SettingsPanel.hpp"
 
 class Voronoi : public Toy
 {
@@ -15,6 +16,8 @@ private:
     int sqr_dist(int x1, int y1, int x2, int y2);
 
 private:
+    SettingsPanel settings_panel;
+
     std::vector<Vector2> seeds;
 
     Color bright_red = {251, 73, 52, 255};

@@ -1,5 +1,5 @@
 #include "Toy.hpp"
-#include <iostream>
+#include <stdexcept>
 
 void Toy::update() { throw std::runtime_error("Toy::update() should not be called directly."); }
 
