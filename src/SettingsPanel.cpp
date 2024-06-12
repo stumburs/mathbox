@@ -19,11 +19,10 @@ void SettingsPanel::render()
     settings_panel_bounds.height = GetScreenHeight();
     DrawRectangleRec(settings_panel_bounds, ColorAlpha(GRAY, 0.4));
 
-    int dy = 125;
     int setting_idx = 0;
     for (auto &[name, value] : settings)
     {
-        std::visit([&name, &value, dy, &setting_idx](auto &&arg)
+        std::visit([this, &name, &value, &setting_idx](auto &&arg)
                    {
             using T = std::decay_t<decltype(arg)>;
 
@@ -45,7 +44,9 @@ void SettingsPanel::render()
             }
             else if constexpr (std::is_same_v<T, bool>)
             {
-                GuiCheckBox({20, static_cast<float>(20 + dy * setting_idx), 100, 100}, name.c_str(), std::get_if<bool>(&value));
+                Rectangle draw_pos = check_box_bounds;
+                draw_pos.y += setting_spacing * setting_idx;
+                GuiCheckBox(draw_pos, name.c_str(), std::get_if<bool>(&value));
                 setting_idx++;
             }
             else
@@ -53,8 +54,6 @@ void SettingsPanel::render()
                 throw std::runtime_error("Something went catastrophically wrong.");
             } }, value);
     }
-
-    DrawText("Settings Panel", settings_panel_bounds.width / 2 - MeasureText("Settings Panel", 40) / 2, GetScreenHeight() / 2 - 20, 40, WHITE);
 }
 
 void SettingsPanel::toggle_open()
