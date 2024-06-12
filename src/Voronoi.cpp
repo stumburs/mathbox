@@ -6,6 +6,8 @@ Voronoi::Voronoi()
     name = "Voronoi";
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
     settings_panel.add_setting("Draw Points", true);
+    settings_panel.add_setting("None", false);
+    settings_panel.add_setting("None2", false);
 }
 
 void Voronoi::update()

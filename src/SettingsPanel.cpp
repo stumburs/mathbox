@@ -19,9 +19,11 @@ void SettingsPanel::render()
     settings_panel_bounds.height = GetScreenHeight();
     DrawRectangleRec(settings_panel_bounds, ColorAlpha(GRAY, 0.4));
 
+    int dy = 125;
+    int setting_idx = 0;
     for (auto &[name, value] : settings)
     {
-        std::visit([&name, &value](auto &&arg)
+        std::visit([&name, &value, dy, &setting_idx](auto &&arg)
                    {
             using T = std::decay_t<decltype(arg)>;
 
@@ -43,7 +45,8 @@ void SettingsPanel::render()
             }
             else if constexpr (std::is_same_v<T, bool>)
             {
-                GuiCheckBox({0, 0, 100, 100}, name.c_str(), std::get_if<bool>(&value));
+                GuiCheckBox({20, static_cast<float>(20 + dy * setting_idx), 100, 100}, name.c_str(), std::get_if<bool>(&value));
+                setting_idx++;
             }
             else
             {
