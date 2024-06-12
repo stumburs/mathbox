@@ -27,7 +27,7 @@ void SettingsPanel::render()
 
             if constexpr (std::is_same_v<T, int>)
             {
-            throw std::runtime_error("Settings for type: int not implemented");
+                throw std::runtime_error("Settings for type: int not implemented");
             }
             else if constexpr (std::is_same_v<T, float>)
             {
