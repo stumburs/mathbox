@@ -5,11 +5,12 @@ Voronoi::Voronoi()
 {
     name = "Voronoi";
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+    settings_panel.add_setting("Draw Points", true);
 }
 
 void Voronoi::update()
 {
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !settings_panel.open_and_hovering())
     {
         seeds.push_back(GetMousePosition());
 
@@ -33,8 +34,10 @@ void Voronoi::update()
                     }
                 }
             }
-            for (const auto seed : seeds)
-                DrawCircle(static_cast<int>(seed.x), static_cast<int>(seed.y), 4, BLACK);
+
+            if (std::get<bool>(settings_panel.get_setting("Draw Points")))
+                for (const auto seed : seeds)
+                    DrawCircle(static_cast<int>(seed.x), static_cast<int>(seed.y), 4, BLACK);
         }
         EndTextureMode();
     }
