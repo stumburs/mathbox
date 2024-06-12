@@ -8,11 +8,11 @@ namespace cbt_config
     using flags = std::vector<std::string>;
 
     // Compilation
-    std::string cc = "g++";                                        // Your compiler of choice (cc, gcc, g++, clang, etc)
-    paths src = {"./src"};                                         // Your source files/folders of .c/.cpp files.
-    flags cflags = {"-I./include", "-Wall", "-Wno-enum-compare"};  // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
-    flags ldflags = {"-L./lib", "-lraylib", "-lwinmm", "-lgdi32"}; // Any LDFLAGS such as '-L./lib -lm'
-    std::string target = "mathbox.exe";                            // Your target executable name.
+    std::string cc = "g++";                                              // Your compiler of choice (cc, gcc, g++, clang, etc)
+    paths src = {"./src"};                                               // Your source files/folders of .c/.cpp files.
+    flags cflags = {"-I./include", "-Wall", "-Wno-enum-compare", "-O3"}; // Any CFLAGS such as '-I./include -O3 -Wall -pedantic'
+    flags ldflags = {"-L./lib", "-lraylib", "-lwinmm", "-lgdi32"};       // Any LDFLAGS such as '-L./lib -lm'
+    std::string target = "mathbox.exe";                                  // Your target executable name.
 
     // Features
     bool console_colors = true;      // Enable console output colors (not supported on all terminals)

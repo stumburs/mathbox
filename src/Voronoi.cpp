@@ -46,7 +46,7 @@ void Voronoi::update()
 
     if (IsKeyPressed(KEY_R))
     {
-        // UnloadRenderTexture(image);
+        UnloadRenderTexture(image);
         image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
         seeds.clear();
     }
