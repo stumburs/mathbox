@@ -43,7 +43,7 @@ void SettingsPanel::render()
                     std::get<float>(setting_min_max.at(name).first),
                     std::get<float>(setting_min_max.at(name).second)
                 );
-                DrawText(TextFormat("%f", std::get<float>(value)), draw_pos.x + draw_pos.width / 2 - MeasureText(TextFormat("%f", std::get<float>(value)), 20) / 2, draw_pos.y + draw_pos.height / 2 - 10, 20, WHITE);
+                DrawText(TextFormat("%.2f", std::get<float>(value)), draw_pos.x + draw_pos.width / 2 - MeasureText(TextFormat("%.2f", std::get<float>(value)), 20) / 2, draw_pos.y + draw_pos.height / 2 - 10, 20, WHITE);
                 setting_idx++;
             }
             else if constexpr (std::is_same_v<T, std::string>)
