@@ -1,11 +1,13 @@
 #include "Voronoi.hpp"
 #include <iostream>
+#include <raymath.h>
 
 Voronoi::Voronoi()
 {
     name = "Voronoi";
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
     settings_panel.add_setting("Draw Points", true);
+    settings_panel.add_setting("Pixel Size", 1.0f, 1.0f, 20.0f);
     settings_panel.add_setting("None", false);
     settings_panel.add_setting("None2", false);
 }
@@ -14,14 +16,15 @@ void Voronoi::update()
 {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !settings_panel.open_and_hovering())
     {
+        int draw_scale = static_cast<int>(std::get<float>(settings_panel.get_setting("Pixel Size")));
         seeds.push_back(GetMousePosition());
 
         BeginTextureMode(image);
         {
             ClearBackground(BLACK);
-            for (int y = 0; y < GetScreenHeight(); y++)
+            for (int y = 0; y < GetScreenHeight(); y += draw_scale)
             {
-                for (int x = 0; x < GetScreenWidth(); x++)
+                for (int x = 0; x < GetScreenWidth(); x += draw_scale)
                 {
                     int j = 0;
                     for (size_t i = 0; i < seeds.size(); i++)
@@ -32,7 +35,14 @@ void Voronoi::update()
                             j = i;
                         }
                         int palette_index = j % palette.size();
-                        DrawPixel(x, y, palette[palette_index]);
+                        if (draw_scale > 1)
+                        {
+                            DrawRectangle(x, y, draw_scale, draw_scale, palette[palette_index]);
+                        }
+                        else
+                        {
+                            DrawPixel(x, y, palette[palette_index]);
+                        }
                     }
                 }
             }

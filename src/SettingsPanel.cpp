@@ -32,7 +32,19 @@ void SettingsPanel::render()
             }
             else if constexpr (std::is_same_v<T, float>)
             {
-                throw std::runtime_error("Settings for type: float not implemented");
+                Rectangle draw_pos = slider_bounds;
+                draw_pos.y += setting_spacing * setting_idx;
+                draw_pos.width = settings_panel_bounds.width - draw_pos.x - 50;
+                GuiSliderBar(
+                    draw_pos,
+                    TextFormat("%d", static_cast<int>(std::get<float>(setting_min_max.at(name).first))),
+                    TextFormat("%d", static_cast<int>(std::get<float>(setting_min_max.at(name).second))),
+                    std::get_if<float>(&value),
+                    std::get<float>(setting_min_max.at(name).first),
+                    std::get<float>(setting_min_max.at(name).second)
+                );
+                DrawText(TextFormat("%f", std::get<float>(value)), draw_pos.x + draw_pos.width / 2 - MeasureText(TextFormat("%f", std::get<float>(value)), 20) / 2, draw_pos.y + draw_pos.height / 2 - 10, 20, WHITE);
+                setting_idx++;
             }
             else if constexpr (std::is_same_v<T, std::string>)
             {
@@ -64,6 +76,13 @@ void SettingsPanel::toggle_open()
 void SettingsPanel::add_setting(const std::string &name, SettingValue value)
 {
     settings[name] = value;
+}
+
+void SettingsPanel::add_setting(const std::string &name, SettingValue value, SettingValue min, SettingValue max)
+{
+    add_setting(name, value);
+    auto min_max = std::make_pair(min, max);
+    setting_min_max[name] = min_max;
 }
 
 SettingsPanel::SettingValue SettingsPanel::get_setting(const std::string &name)
