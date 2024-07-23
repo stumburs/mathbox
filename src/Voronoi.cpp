@@ -8,8 +8,6 @@ Voronoi::Voronoi()
     image = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
     settings_panel.add_setting("Draw Points", true);
     settings_panel.add_setting("Pixel Size", 1.0f, 1.0f, 20.0f);
-    settings_panel.add_setting("None", false);
-    settings_panel.add_setting("None2", false);
 }
 
 void Voronoi::update()

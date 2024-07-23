@@ -34,11 +34,11 @@ void SettingsPanel::render()
             {
                 Rectangle draw_pos = slider_bounds;
                 draw_pos.y += setting_spacing * setting_idx;
-                draw_pos.width = settings_panel_bounds.width - draw_pos.x - 50;
+                draw_pos.width = settings_panel_bounds.width - draw_pos.x - 200;
                 GuiSliderBar(
                     draw_pos,
-                    TextFormat("%d", static_cast<int>(std::get<float>(setting_min_max.at(name).first))),
-                    TextFormat("%d", static_cast<int>(std::get<float>(setting_min_max.at(name).second))),
+                    nullptr,
+                    name.c_str(),
                     std::get_if<float>(&value),
                     std::get<float>(setting_min_max.at(name).first),
                     std::get<float>(setting_min_max.at(name).second)

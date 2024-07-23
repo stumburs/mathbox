@@ -30,10 +30,10 @@ private:
     std::map<std::string, std::pair<SettingValue, SettingValue>> setting_min_max;
 
     // GUI
-    int min_render_width = 1280 / 4;
+    int min_render_width = 1280 / 3;
     int setting_height = 50;
     int setting_spacing = setting_height + setting_height / 2;
 
     Rectangle check_box_bounds = {.x = 50, .y = 50, .width = static_cast<float>(setting_height), .height = 50};
-    Rectangle slider_bounds = {.x = 50, .y = 50, .width = static_cast<float>(min_render_width - 50), .height = 50};
+    Rectangle slider_bounds = {.x = 50, .y = 50, .width = static_cast<float>(min_render_width - 200), .height = 50};
 };
